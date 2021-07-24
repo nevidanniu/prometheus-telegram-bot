@@ -1,0 +1,5 @@
+<b>JIRA NOTIFICATION 🎫</b>
+{{ $.fields.reporter.displayName }} created new issue
+<a href="https://ihelp.rt.ru/browse/{{ $.key }}">{{ $.key }} ( {{ $.fields.issuetype.name }} )</a>
+Summary: {{ $.fields.summary }}
+{{ if $.fields.assignee.displayName }}Assignee: {{ $.fields.assignee.displayName }} {{ end }}

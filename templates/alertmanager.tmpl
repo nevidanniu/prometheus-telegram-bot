@@ -1,0 +1,12 @@
+{{ $externalUrl := $.externalURL }}
+{{ $status := $.status }}
+{{- range $val := .alerts -}}
+{{if eq $status "firing"}}Status: <b>{{ $status | str_UpperCase -}} 🔥</b>{{ end -}}
+{{if eq $status "resolved"}}Status: <b>{{ $status | str_UpperCase -}} ✅</b>{{- end -}}
+{{- range $index, $element := $val.labels }}
+{{ if eq $index "alertname" }}<b>Alert:</b> <a href="{{ $val.generatorURL }}">{{ index $val.labels "alertname" }}</a>
+{{- else -}}<b>{{ $index }}:</b> {{ $element }}{{ end }}{{ end }}
+<b>Description:</b> {{ index $val.annotations "message" }}
+{{ if $val.startsAt -}}<b>Active from:</b> {{ $val.startsAt | str_FormatDate }}{{ end }}
+{{ delimiter "" }}
+{{ end }}
